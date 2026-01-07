@@ -15,9 +15,12 @@ This lab simulates an unauthorized brute force authentication attempt against a 
 - Windows Event Viewer
 - Wireshark
 
-## Step 1: Security Configuration
-- Created an inbound firewall rule allowing SMB (TCP 445)
-- Verified open port using Zenmap
+## Methodology
+
+### Step 1: Security Configuration
+- Create an inbound firewall rule allowing SMB (TCP 445)
+- Verify open port using Zenmap
+![Allow SMB 445](images/AllowSMB445.png)
 
 ## Step 2: Logging Configuration
 - Configured Windows Event Viewer to log failed authentication attempts
