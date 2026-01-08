@@ -19,22 +19,45 @@ This lab simulates an unauthorized brute force authentication attempt against a 
 
 ### Step 1: Security Configuration
 - Create an inbound firewall rule allowing SMB (TCP 445)
-- Verify open port using Zenmap
-![Allow SMB 445](images/AllowSMB445.png)
+![Allow SMB 445](images/Allow_SMB_445.png)
 
-## Step 2: Logging Configuration
-- Configured Windows Event Viewer to log failed authentication attempts
-- Verified logging with manual failed login attempts
+### Step 2: Verify open port using zenmap
+![Scan for open ports](images/scan_for_open_ports.png)
+
+### Step 3: Logging Configuration
+- Configure Windows Event Viewer to log failed authentication attempts
+![Configure logging](images/Configure_logging.png)
+
+### Step 4: Verify logging with manual failed login attempts
 - Event ID monitored: 4625 (Failed Logon)
+![Windows event viewer logs](images/Event_viewer_logs.png)
 
-## Step 3: Attack Simulation
-- Captured traffic using Wireshark
-- Launched a brute force attempt using Hydra against the SMB service
+### Step 5: Create a passwords.txt file with a list of passwords
+-This is the file I will attempt to compromise during the attack
+![passwords.txt file](images/create_passwords_txt.png)
+
+### Step 6: Launch Wireshark
+- Begin capturing traffic using wireshark
+
+
+### Step 7: Simulate Attack
+- Launch a brute force attempt using Hydra against the SMB service
+- use command `hydra -l username -P passwords.txt smb://Target_IP`
+
+Image shows the brute force attack was unsuccesful
+![attack results](images/Hydra_results.png)
+
+### Step 8: Analyze Wireshark Capture
+
+- Network capture showing repeated SMB connection attempts during a simulated brute force attack. 
+- RST/ACK responses indicate that authentication attempts were rejected.
+![Wireshark capture](images/wiresharkcapture.png)
+
 
 ## Detection & Analysis
 - No new Event ID 4625 logs were generated
 - Wireshark traffic confirmed unsuccessful authentication attempts
-- Attack failed due to logging and security configuration
+- Attack failed due to SMB connections being reset before authentication was fully processed.
 
 ## Incident Response Considerations
 Recommended actions:
