@@ -30,6 +30,7 @@ This lab simulates an unauthorized brute force authentication attempt against a 
 
 ### Step 4: Verify logging with manual failed login attempts
 - Event ID monitored: 4625 (Failed Logon)
+
 ![Windows event viewer logs](images/Event_viewer_logs.png)
 
 ### Step 5: Create a passwords.txt file with a list of passwords
